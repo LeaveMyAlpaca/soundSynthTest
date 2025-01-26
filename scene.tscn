@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsg5g4ti0n3gt"]
+[gd_scene load_steps=6 format=3 uid="uid://dsg5g4ti0n3gt"]
 
 [ext_resource type="Script" path="res://PureNoise.cs" id="2_88xej"]
 [ext_resource type="Script" path="res://NoiseAndSin.cs" id="2_sol7b"]
 [ext_resource type="Script" path="res://LFO.cs" id="3_1xohn"]
+[ext_resource type="Script" path="res://EngineSoundController.cs" id="4_duuxm"]
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_wbwwc"]
 buffer_length = 10.0
@@ -20,7 +21,8 @@ FeedbackAmount = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Engine synth"]
 stream = SubResource("AudioStreamGenerator_wbwwc")
-volume_db = -14.991
+volume_db = -26.38
+pitch_scale = 1.1
 mix_target = 2
 bus = &"Engine"
 
@@ -33,11 +35,18 @@ FeedbackAmount = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Wind synth"]
 stream = SubResource("AudioStreamGenerator_wbwwc")
-volume_db = -14.991
+volume_db = 1.0
 mix_target = 2
 bus = &"Wind"
 
-[node name="LFO" type="Node" parent="Wind synth"]
+[node name="LFO" type="Node" parent="."]
 script = ExtResource("3_1xohn")
 Rate = 200.0
 Depth = 0.2
+
+[node name="Engine controller" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_duuxm")
+player = NodePath("../Engine synth/AudioStreamPlayer")
+Throttle = 1.0
+pitchMinMax = Vector2(0.2, 1.1)
+volumeMinMax = Vector2(-15, -10)
