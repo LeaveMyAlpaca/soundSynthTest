@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "soundSynthTest", "soundSynthTest.csproj", "{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{913A68D0-0750-4A92-9AF1-A2EA0C4F20AB}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
