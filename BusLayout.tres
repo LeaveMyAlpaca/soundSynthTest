@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://dffv0di1bfdqp"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://dffv0di1bfdqp"]
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_uwrvb"]
 resource_name = "HighPassFilter"
@@ -30,6 +30,21 @@ room_size = 0.3
 damping = 0.8
 wet = 0.36
 
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_7an57"]
+resource_name = "Filter"
+cutoff_hz = 2200.0
+resonance = 0.4
+gain = 4.0
+db = 1
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_wh7m0"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_jscx5"]
+resource_name = "EQ"
+band_db/32_hz = -18.8
+band_db/100_hz = -17.5
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectHighPassFilter_uwrvb")
 bus/0/effect/0/enabled = false
@@ -37,7 +52,7 @@ bus/1/name = &"Engine"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = 0.0672607
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectFilter_y6g6q")
 bus/1/effect/0/enabled = true
@@ -47,3 +62,15 @@ bus/1/effect/2/effect = SubResource("AudioEffectStereoEnhance_6nlox")
 bus/1/effect/2/enabled = false
 bus/1/effect/3/effect = SubResource("AudioEffectReverb_m4icp")
 bus/1/effect/3/enabled = true
+bus/2/name = &"Wind"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 6.02
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectFilter_7an57")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectReverb_wh7m0")
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource("AudioEffectEQ_jscx5")
+bus/2/effect/2/enabled = false

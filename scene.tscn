@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsg5g4ti0n3gt"]
+[gd_scene load_steps=5 format=3 uid="uid://dsg5g4ti0n3gt"]
 
+[ext_resource type="Script" path="res://PureNoise.cs" id="2_88xej"]
 [ext_resource type="Script" path="res://NoiseAndSin.cs" id="2_sol7b"]
+[ext_resource type="Script" path="res://LFO.cs" id="3_1xohn"]
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_wbwwc"]
 buffer_length = 10.0
@@ -21,3 +23,21 @@ stream = SubResource("AudioStreamGenerator_wbwwc")
 volume_db = -14.991
 mix_target = 2
 bus = &"Engine"
+
+[node name="Wind synth" type="Node" parent="." node_paths=PackedStringArray("Player")]
+script = ExtResource("2_88xej")
+Player = NodePath("AudioStreamPlayer")
+NoiseVolume = 0.5
+DistortionAmount = 4.0
+FeedbackAmount = 0.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Wind synth"]
+stream = SubResource("AudioStreamGenerator_wbwwc")
+volume_db = -14.991
+mix_target = 2
+bus = &"Wind"
+
+[node name="LFO" type="Node" parent="Wind synth"]
+script = ExtResource("3_1xohn")
+Rate = 200.0
+Depth = 0.2

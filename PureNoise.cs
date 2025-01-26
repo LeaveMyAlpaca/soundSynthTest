@@ -1,19 +1,16 @@
 using Godot;
 using System;
 
-public partial class NoiseAndSin : Node
+public partial class PureNoise : Node
 {
-
 	[Export] public AudioStreamPlayer Player { get; set; }
 
 	private AudioStreamGeneratorPlayback _playback; // Will hold the AudioStreamGeneratorPlayback.
 	[Export] private int SampleRate = 44100;
-	[Export] private float BaseFrequency = 100f; // Base frequency for the engine sound
-	[Export] private float Duration = 10f; // Duration in seconds
+	[Export] private float Duration = .1f; // Duration in seconds
 	[Export] private float NoiseVolume = 0.1f; // Volume of the noise component
 	[Export] private bool disable = false;
-	[Export] bool distortion = true;
-
+	[Export] bool distortion = false;
 	public override void _Ready()
 	{
 		if (Player.Stream is AudioStreamGenerator generator) // Type as a generator to access MixRate.
@@ -39,14 +36,12 @@ public partial class NoiseAndSin : Node
 		{
 			float time = (float)i / SampleRate;
 
-			// Generate a base sine wave for the engine sound
-			float sineWave = (float)Math.Sin(2 * Math.PI * BaseFrequency * time);
 
 			// Generate white noise
 			float noise = (float)(GD.Randf() * 2.0 - 1.0) * NoiseVolume;
 
 			// Combine the sine wave and noise
-			samples[i] = new(sineWave * 0.5f + noise, sineWave * 0.5f + noise);
+			samples[i] = new(noise, noise);
 		}
 		if (distortion)
 			ApplyDistortion(totalSamples, ref samples);
